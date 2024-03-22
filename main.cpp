@@ -15,13 +15,16 @@ struct fract {
 	fract add(fract, fract, fract);
 	void print();
 };
-int common(int, int);
 int common(int, int, int);
+int common(int, int, int, int);
 fract deciToFract(double);
 double tenthFract(int);
 void initialize();
 int main() {
 	initialize();
+
+	common(2, 4, 1229);
+
 	double d = 0.99;
 	fract converted;
 	converted = deciToFract(d);
@@ -50,6 +53,7 @@ void initialize() {
 				}
 			}
 		}
+		cout << "count " << count << endl;
 		for (int i = 0; i < count; i++) {
 			cout << primes[i] << " ";
 			fout << primes[i] << endl;
@@ -87,8 +91,9 @@ fract deciToFract(double d) {
 	}
 	return sum;
 }
-int common(int a, int b) {
-	int count = sizeof(primes) / sizeof(int);
+int common(int a, int b, int count) {
+	//int count = sizeof(primes) / sizeof(int);
+	//cout << "count " << count << endl;
 	int twos = 0;
 	bool oddA = a % 2 ? false : true;
 	bool oddB = b % 2 ? false : true;
@@ -103,17 +108,18 @@ int common(int a, int b) {
 	}
 	int productPrimes = 1;
 	for (int i = 0; i < count; i++) {
-		if (a % primes[i] == 0 && b % primes[i] == 0) {
+		if (a % primes[i] == 0 && b % primes[i] == 0) { //0?
 			productPrimes *= primes[i];
 			break;
 		}
 	}
 	return pow(2, twos) * productPrimes;
 }
-int common(int a, int b, int c) {
+int common(int a, int b, int c, int count) {
 	int numPrimes = sizeof(primes) / sizeof(int);
 	int productPrimes = 1;
-	int count = 0;
+	//int count = 0;
+	count = 0;
 	int doneFOur = 0;
 	for (int i = 0; i < 4; i++) {
 		while (count != numPrimes) {
@@ -160,7 +166,7 @@ fract::fract(int n, int d) {
 	denominator = d;
 }
 void fract::simplify() {
-	int c = common(numerator, denominator);
+	int c = common(numerator, denominator, 1229);
 	numerator /= c;
 	denominator /= c;
 }
@@ -168,8 +174,8 @@ fract fract::add(fract a, fract b) {
 	a.simplify();
 	b.simplify();
 	fract temp;
-	temp.denominator = common(a.denominator, b.denominator) * (a.denominator / common(a.denominator, b.denominator)) * (b.denominator / common(a.denominator, b.denominator)); 
-	temp.numerator = (a.numerator * common(a.denominator, b.denominator)) + (b.numerator * common(a.denominator, b.denominator));
+	temp.denominator = common(a.denominator, b.denominator, 1229) * (a.denominator / common(a.denominator, b.denominator, 1229)) * (b.denominator / common(a.denominator, b.denominator, 1229));
+	temp.numerator = (a.numerator * common(a.denominator, b.denominator, 1229)) + (b.numerator * common(a.denominator, b.denominator, 1229));
 	return temp;
 }
 fract fract::add(fract a, fract b, fract c) {

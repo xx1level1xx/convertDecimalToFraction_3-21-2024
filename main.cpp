@@ -68,7 +68,6 @@ void initialize() {
 		cout << temp << endl;
 	}
 	fin.close();
-	//cout << "test9" << endl;
 }
 fract deciToFract(double d) {
 	int pos= 1;

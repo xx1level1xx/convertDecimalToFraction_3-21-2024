@@ -13,6 +13,7 @@ struct fract {
 	void simplify();
 	fract add(fract, fract);
 	fract add(fract, fract, fract);
+	fract operator*(fract);//how comes I don't remember
 	void print();
 };
 int common(int, int, int);
@@ -23,7 +24,7 @@ void initialize();
 int main() {
 	initialize();
 
-	common(2, 4, 1229);
+	//common(2, 4, 1229);
 
 	double d = 0.99;
 	fract converted;
@@ -79,10 +80,11 @@ fract deciToFract(double d) {
 		cout << (int)(reminder / tenthFract(pos)) << endl;
 		cout << (int)(reminder / tenthFract(pos)) * tenthFract(pos) << endl;
 		reminder -= (int)(reminder / tenthFract(pos)) * tenthFract(pos);
-		reminder = round(reminder);
+		//reminder = round(reminder);
 		cout << reminder << endl;
-		system("pause");
+		//system("pause");
 		pos++;
+		cout << "test10" << endl;
 	}
 	fract sum(0,1);
 	for (int i=1; i < pos; i++) {

@@ -82,7 +82,7 @@ fract deciToFract(double d) {
 		pos++;
 	}
 	fract sum(0,1);
-	for (int i=0; i < pos - 1; i++) {
+	for (int i=1; i < pos; i++) {
 		sum = sum.add(sum,fract(fractNumArr[i], pow(10, i)));
 	}
 	return sum;

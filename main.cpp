@@ -109,6 +109,8 @@ int common(int a, int b, int count) {
 	for (int i = 0; i < count; i++) {
 		if (a % primes[i] == 0 && b % primes[i] == 0) { //0?
 			productPrimes *= primes[i];
+			a /= primes[i];
+			b /= primes[i];
 			break;
 		}
 	}
